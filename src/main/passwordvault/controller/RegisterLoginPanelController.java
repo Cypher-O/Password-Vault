@@ -1,8 +1,7 @@
-package java.passwordvault.controller;
+package main.passwordvault.controller;
 
 import javafx.fxml.FXML;
 import javafx.scene.control.*;
-import javafx.scene.layout.StackPane;
 import javafx.scene.layout.VBox;
 import java.util.Base64;
 import java.util.HashMap;
@@ -13,10 +12,7 @@ public class RegisterLoginPanelController {
     private AppUIController appUIController;
 
     @FXML
-    private StackPane root;
-
-//    @FXML
-//    private VBox root;
+    private VBox root;
 
     @FXML
     private TextField usernameField;
@@ -25,12 +21,14 @@ public class RegisterLoginPanelController {
     @FXML
     private Button toggleButton;
 
+    @FXML
+    private TextField passwordTextField;
+
     private boolean isPasswordVisible = false;
     private static final Map<String, String> userDatabase = new HashMap<>();
 
     @FXML
     private void initialize() {
-        // Initialization code if necessary
     }
 
     @FXML
@@ -61,7 +59,7 @@ public class RegisterLoginPanelController {
             String storedPassword = new String(Base64.getDecoder().decode(userDatabase.get(username)));
             if (password.equals(storedPassword)) {
                 showAlert(Alert.AlertType.INFORMATION, "Login successful");
-                // appUI.showVault(); // Integrate this with your AppUI logic
+                 appUIController.showVault(); // Integrate this with your AppUI logic
             } else {
                 showAlert(Alert.AlertType.ERROR, "Invalid password");
             }
@@ -73,11 +71,24 @@ public class RegisterLoginPanelController {
     @FXML
     private void togglePasswordVisibility() {
         isPasswordVisible = !isPasswordVisible;
-        passwordField.setPromptText(passwordField.getText());
-        passwordField.clear();
-        passwordField.setPromptText(isPasswordVisible ? passwordField.getPromptText() : null);
-        toggleButton.setText(isPasswordVisible ? "Hide" : "Show");
+
+        if (isPasswordVisible) {
+            passwordTextField.setText(passwordField.getText());
+            passwordTextField.setVisible(true);
+            passwordTextField.setManaged(true);
+            passwordField.setVisible(false);
+            passwordField.setManaged(false);
+            toggleButton.setText("Hide Password");
+        } else {
+            passwordField.setText(passwordTextField.getText());
+            passwordField.setVisible(true);
+            passwordField.setManaged(true);
+            passwordTextField.setVisible(false);
+            passwordTextField.setManaged(false);
+            toggleButton.setText("Show Password");
+        }
     }
+
 
     private void showAlert(Alert.AlertType alertType, String message) {
         Alert alert = new Alert(alertType);
@@ -90,7 +101,7 @@ public class RegisterLoginPanelController {
         this.appUIController = appUIController;
     }
 
-    public StackPane getRoot() {
+    public VBox getRoot() {
         return root;
     }
 }

@@ -1,7 +1,0 @@
-<?xml version="1.0" encoding="UTF-8"?>
-
-<?import javafx.scene.layout.StackPane?>
-
-<StackPane xmlns:fx="http://javafx.com/fxml" fx:controller="controller.AppUIController">
-    <!-- The RegisterLoginPanel and VaultUI will be loaded dynamically here -->
-</StackPane>

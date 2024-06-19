@@ -1,14 +1,60 @@
 <?xml version="1.0" encoding="UTF-8"?>
-
-<?import java.lang.*?>
-<?import java.util.*?>
-<?import javafx.scene.*?>
 <?import javafx.scene.control.*?>
 <?import javafx.scene.layout.*?>
+<?import javafx.geometry.Insets?>
 
-<AnchorPane xmlns="http://javafx.com/javafx"
-            xmlns:fx="http://javafx.com/fxml"
-            fx:controller="$CONTROLLER_NAME$"
-            prefHeight="400.0" prefWidth="600.0" >
+<VBox alignment="CENTER" fx:id="root" xmlns="http://javafx.com/javafx"
+      xmlns:fx="http://javafx.com/fxml" fx:controller="main.passwordvault.controller.VaultUIController"
+      spacing="10">
+    <padding>
+        <Insets top="10" right="10" bottom="10" left="10"/>
+    </padding>
 
-</AnchorPane>
+    <GridPane alignment="CENTER" hgap="10" vgap="10">
+        <Label text="Site:" GridPane.columnIndex="0" GridPane.rowIndex="0"/>
+        <TextField fx:id="siteField" GridPane.columnIndex="1" GridPane.rowIndex="0"/>
+
+        <Label text="Username:" GridPane.columnIndex="0" GridPane.rowIndex="1"/>
+        <TextField fx:id="usernameField" GridPane.columnIndex="1" GridPane.rowIndex="1"/>
+
+        <Label text="Password:" GridPane.columnIndex="0" GridPane.rowIndex="2"/>
+        <PasswordField fx:id="passwordField" GridPane.columnIndex="1" GridPane.rowIndex="2"/>
+
+        <Button text="Add/Update" onAction="#addOrUpdatePassword" GridPane.columnIndex="0" GridPane.rowIndex="3"/>
+        <Button text="Load Vault" onAction="#loadVault" GridPane.columnIndex="1" GridPane.rowIndex="3"/>
+    </GridPane>
+
+    <TextArea fx:id="vaultTextArea" editable="false" VBox.vgrow="ALWAYS"/>
+    <Button fx:id="toggleButton" text="Decrypt Passwords"/>
+</VBox>
+
+
+<!--        <?xml version="1.0" encoding="UTF-8"?>-->
+<!--<?import javafx.scene.control.*?>-->
+<!--<?import javafx.scene.layout.*?>-->
+<!--<?import javafx.geometry.Insets?>-->
+
+<!--<VBox fx:id="root" xmlns="http://javafx.com/javafx"-->
+<!--      xmlns:fx="http://javafx.com/fxml" fx:controller="main.passwordvault.controller.VaultUIController"-->
+<!--      spacing="10">-->
+<!--    <padding>-->
+<!--        <Insets top="10" right="10" bottom="10" left="10"/>-->
+<!--    </padding>-->
+
+<!--    <GridPane alignment="CENTER" hgap="10" vgap="10">-->
+<!--        <Label text="Site:" GridPane.columnIndex="0" GridPane.rowIndex="0"/>-->
+<!--        <TextField fx:id="siteField" GridPane.columnIndex="1" GridPane.rowIndex="0"/>-->
+
+<!--        <Label text="Username:" GridPane.columnIndex="0" GridPane.rowIndex="1"/>-->
+<!--        <TextField fx:id="usernameField" GridPane.columnIndex="1" GridPane.rowIndex="1"/>-->
+
+<!--        <Label text="Password:" GridPane.columnIndex="0" GridPane.rowIndex="2"/>-->
+<!--        <PasswordField fx:id="passwordField" GridPane.columnIndex="1" GridPane.rowIndex="2"/>-->
+
+<!--        <Button text="Add/Update" onAction="#addOrUpdatePassword" GridPane.columnIndex="0" GridPane.rowIndex="3"/>-->
+<!--        <Button text="Load Vault" onAction="#loadVault" GridPane.columnIndex="1" GridPane.rowIndex="3"/>-->
+<!--    </GridPane>-->
+
+<!--    <TextArea fx:id="vaultTextArea" editable="false" VBox.vgrow="ALWAYS"/>-->
+<!--    <Button fx:id="toggleButton" text="Show Passwords"/>-->
+<!--</VBox>-->
